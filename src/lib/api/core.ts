@@ -2,7 +2,7 @@ import axios, { type AxiosRequestConfig } from 'axios'
 
 export type AppEnv = 'production' | 'development' | 'localhost'
 
-const getAppEnv = (): AppEnv => (process.env.NEXT_PUBLIC_APP_ENV as Exclude<AppEnv, 'development'>) || 'development'
+// const getAppEnv = (): AppEnv => (process.env.NEXT_PUBLIC_APP_ENV as Exclude<AppEnv, 'development'>) || 'development'
 
 const getApiEndpoint = () => {
   return import.meta.env.VITE_APP_API_ENDPOINT

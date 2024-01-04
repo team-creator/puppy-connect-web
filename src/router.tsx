@@ -1,6 +1,7 @@
 import { Route, createBrowserRouter, createRoutesFromElements } from 'react-router-dom'
-import { ROUTE } from '@/constants/route'
+
 import HomePage from '@/app/home/page'
+import { ROUTE } from '@/constants/route'
 
 export const router = createBrowserRouter(
   createRoutesFromElements(

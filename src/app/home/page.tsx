@@ -1,5 +1,6 @@
-import axios from 'axios'
 import { useState } from 'react'
+
+import axios from 'axios'
 
 export default function HomePage() {
   const [endpoint, setEndpoint] = useState('https://jsonplaceholder.typicode.com/todos/1')
@@ -13,23 +14,33 @@ export default function HomePage() {
           type='text'
           placeholder='https://api.example.com'
           value={endpoint}
-          onChange={(e) => setEndpoint(e.target.value)}
+          onChange={(e) => {
+            setEndpoint(e.target.value)
+          }}
         />
         <button
           className='ml-2 rounded-md bg-blue-300 p-2'
           onClick={() => {
-            axios.get(endpoint).then((res) => {
-              setData({
-                status: res.status,
-                data: res.data,
+            axios
+              .get(endpoint)
+              .then((res) => {
+                setData({
+                  status: res.status,
+                  data: res.data,
+                })
               })
-            })
+              .catch((err) => {
+                setData({
+                  status: err.response.status,
+                  data: err.response.data,
+                })
+              })
           }}
         >
           CORS Test
         </button>
       </div>
-      {data && (
+      {Boolean(data) && (
         <div className='w-full max-w-3xl overflow-auto rounded-md border border-gray-400 p-2'>
           {JSON.stringify(data)}
         </div>

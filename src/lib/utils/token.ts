@@ -1,15 +1,15 @@
 const ACCESS_TOKEN_KEY = 'accessToken'
 
-class TokenRepository {
-  static getAccessToken() {
+export const tokenRepository = {
+  getAccessToken: () => {
     return localStorage.getItem(ACCESS_TOKEN_KEY)
-  }
+  },
 
-  static setAccessToken(accessToken: string) {
-    return localStorage.setItem(ACCESS_TOKEN_KEY, accessToken)
-  }
+  setAccessToken: (accessToken: string) => {
+    localStorage.setItem(ACCESS_TOKEN_KEY, accessToken)
+  },
 
-  static removeAccessToken() {
-    return localStorage.removeItem(ACCESS_TOKEN_KEY)
-  }
+  removeAccessToken: () => {
+    localStorage.removeItem(ACCESS_TOKEN_KEY)
+  },
 }

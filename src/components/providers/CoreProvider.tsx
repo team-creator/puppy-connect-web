@@ -1,7 +1,9 @@
 import { RouterProvider } from 'react-router-dom'
+
 import { FetchInterceptorProvider } from './FetchInterceptorProvider'
-import { router } from '@/router'
 import TanstackQueryProvider from './TanstackQueryProvider'
+
+import { router } from '@/router'
 
 export function CoreProvider() {
   return (

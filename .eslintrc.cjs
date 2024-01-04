@@ -1,3 +1,5 @@
+const path = require('path')
+
 module.exports = {
   env: {
     browser: true,
@@ -7,7 +9,8 @@ module.exports = {
   extends: [
     'plugin:react/recommended',
     'standard-with-typescript',
-    'plugin:import/recommended',
+    'plugin:react-hooks/recommended',
+    'plugin:@tanstack/eslint-plugin-query/recommended',
     'plugin:tailwindcss/recommended',
     'prettier',
   ],
@@ -16,11 +19,13 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module',
+    project: ['./tsconfig.json', './tsconfig.node.json'],
+    tsconfigRootDir: __dirname,
   },
-  plugins: ['react-refresh', 'react', 'import', '@tanstack/query', 'tailwindcss'],
+  plugins: ['react-refresh', 'react', '@tanstack/query', 'tailwindcss', 'import'],
+
   rules: {
-    semi: 'off',
-    '@typescript-eslint/semi': 'off',
+    'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
     curly: ['error', 'all'],
     eqeqeq: [
       'error',
@@ -65,5 +70,12 @@ module.exports = {
         'newlines-between': 'always',
       },
     ],
+    'react/react-in-jsx-scope': 'off',
+    '@typescript-eslint/explicit-function-return-type': 'off',
+    '@typescript-eslint/non-nullable-type-assertion-style': 'off',
+    '@typescript-eslint/promise-function-async': 'off',
+    '@typescript-eslint/no-misused-promises': 'off',
+    '@typescript-eslint/triple-slash-reference': 'off',
+    '@typescript-eslint/return-await': 'off',
   },
 }

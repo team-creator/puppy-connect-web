@@ -3,10 +3,11 @@ import { useEffect } from 'react'
 import { type AxiosError, type AxiosResponse, type InternalAxiosRequestConfig } from 'axios'
 
 import { axiosInstance } from '@/lib/api/core'
+import { tokenRepository } from '@/lib/utils/token'
 
 export const useAxiosInterceptor = () => {
   const requestHandler = (config: InternalAxiosRequestConfig) => {
-    const accessToken = TokenRepository.getAccessToken()
+    const accessToken = tokenRepository.getAccessToken()
 
     if (accessToken !== null) {
       // eslint-disable-next-line no-param-reassign
@@ -16,7 +17,7 @@ export const useAxiosInterceptor = () => {
     return config
   }
 
-  const requestErrorHandler = (error: AxiosError) => {
+  const requestErrorHandler = async (error: AxiosError) => {
     return Promise.reject(error)
   }
 
@@ -24,7 +25,7 @@ export const useAxiosInterceptor = () => {
     return response
   }
 
-  const responseErrorHandler = (error: any) => {
+  const responseErrorHandler = async (error: any) => {
     return Promise.reject(error)
   }
 
